@@ -1,0 +1,20 @@
+MMGBSA control file
+&general
+	startframe=1001,
+	endframe=10000,
+	interval=90,
+	use_sander=1,
+	netcdf=1,
+	keep_files=0,
+	debug_printlevel=0,
+	verbose=1,
+	entropy=0,
+/
+&gb
+	igb=2,
+	saltcon=0.000,
+	ifqnt=0,
+	molsurf=0,
+	surften=0.00500,
+	surfoff=0.00000,
+/

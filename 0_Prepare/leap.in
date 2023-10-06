@@ -1,0 +1,34 @@
+source oldff/leaprc.ff14SB
+source leaprc.water.tip3p      
+
+p = loadpdb mhc.pdb
+l = loadpdb peptide.pdb
+list
+
+bond p.101.SG p.164.SG
+bond p.203.SG p.259.SG
+bond p.301.SG p.356.SG
+##if there are disulfide bond(SS), insert "bond p.ID.SG p.ID.SG"
+c = combine { p l }
+
+set default PBradii mbondi2
+
+savepdb p pro.pdb
+savepdb l lig.pdb
+savepdb c com.pdb
+saveamberparm p pro.prmtop pro.inpcrd
+saveamberparm l lig.prmtop lig.inpcrd
+saveamberparm c com.prmtop com.inpcrd
+check c
+###
+solvatebox c   TIP3PBOX 15.0
+
+charge c
+addions c Cl- 0
+addions c Na+ 0
+
+savepdb c com_solv.pdb
+saveamberparm c com_solv.prmtop com_solv.inpcrd
+
+quit
+#####
